@@ -1,65 +1,96 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import { dictionaries, type Locale } from "@/lib/i18n";
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import TrustStrip from "@/components/TrustStrip";
+import Services from "@/components/Services";
+import About from "@/components/About";
+import BeforeAfter from "@/components/BeforeAfter";
+import Specialists from "@/components/Specialists";
+import Testimonials from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import Faq from "@/components/Faq";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+const STORAGE_KEY = "synergie:locale";
+
+/**
+ * Map a BCP 47 language tag to one of our supported locales.
+ * Armenian has the language code `hy` (Hayeren) — we expose it as `am`.
+ * Anything we don't ship → English.
+ */
+function matchSupportedLocale(tag: string): Locale | null {
+  const code = tag.toLowerCase().split("-")[0];
+  if (code === "hy") return "am";
+  if (code === "ru") return "ru";
+  if (code === "en") return "en";
+  return null;
+}
+
+function detectBrowserLocale(): Locale {
+  if (typeof navigator === "undefined") return "en";
+  const tags =
+    navigator.languages && navigator.languages.length > 0
+      ? navigator.languages
+      : [navigator.language];
+  for (const tag of tags) {
+    const matched = matchSupportedLocale(tag);
+    if (matched) return matched;
+  }
+  return "en";
+}
+
+export default function HomePage() {
+  const [locale, setLocaleState] = useState<Locale>("en");
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
+      if (saved && saved in dictionaries) {
+        // User explicitly chose a language earlier — honor it.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLocaleState(saved);
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+    // No saved preference — pick from browser, defaulting to English.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLocaleState(detectBrowserLocale());
+  }, []);
+
+  const setLocale = (l: Locale) => {
+    setLocaleState(l);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, l);
+      document.documentElement.setAttribute("lang", l === "am" ? "hy" : l);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const dict = dictionaries[locale];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Nav dict={dict} locale={locale} setLocale={setLocale} />
+      <main className="flex-1">
+        <Hero dict={dict} />
+        <TrustStrip dict={dict} />
+        <Services dict={dict} />
+        <About dict={dict} />
+        <Pricing dict={dict} />
+        <BeforeAfter dict={dict} />
+        <Testimonials dict={dict} />
+        <Specialists dict={dict} />
+        <Faq dict={dict} />
+        <Contact dict={dict} />
       </main>
-    </div>
+      <Footer dict={dict} />
+    </>
   );
 }

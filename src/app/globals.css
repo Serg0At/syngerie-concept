@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: #faf8f4;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #4a4a48;
+  --color-ink-muted: #8a8a85;
+  --color-line: #e6e2d8;
+  --color-forest: #2f4f3a;
+  --color-forest-soft: #3d6149;
+
+  --font-serif: var(--font-playfair), var(--font-armenian-serif),
+    "Playfair Display", "Noto Serif Armenian", Georgia, serif;
+  --font-sans: var(--font-inter), var(--font-armenian-sans), "Inter",
+    "Noto Sans Armenian", system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent any horizontal overflow from causing the page to scroll sideways
+     on mobile. `clip` keeps `position: sticky` (nav) working — `hidden` would
+     create a scroll container and break it. */
+  overflow-x: clip;
+}
+
+/* Belt-and-braces: make sure no descendant can ever exceed the viewport width. */
+body {
+  max-width: 100vw;
+}
+
+::selection {
+  background: var(--color-forest);
+  color: var(--color-cream);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* Fade-in-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 900ms ease, transform 900ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Subtle dotted divider used in footer / nav rule */
+.hairline {
+  background: var(--color-line);
+}
+
+/* Custom scrollbar — discreet */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d3c5;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b9b4a4;
 }
