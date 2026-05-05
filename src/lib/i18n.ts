@@ -231,19 +231,19 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           quote:
-            "The doctors are very competent and professional, and the atmosphere is simply super!!!! I've been to many clinics in Yerevan and I definitely recommend this one ♥️♥️♥️",
+            "The doctors are very competent and professional, and the atmosphere is simply super. I've been to many clinics in Yerevan and I definitely recommend this one ♥️",
           name: "Irina Nverovna",
           treatment: "Google review",
         },
         {
           quote:
-            "Without a doubt, this is the best cosmetology clinic in Yerevan! Everything here is top-notch: state-of-the-art equipment, a stylish interior, and an incredibly pleasant atmosphere. The specialists are true professionals: knowledgeable, attentive, and friendly.",
+            "Without a doubt, the best cosmetology clinic in Yerevan. Top-notch equipment, stylish interior and an incredibly pleasant atmosphere. The specialists are true professionals — knowledgeable and attentive.",
           name: "Eteri Bleyan",
           treatment: "Google review",
         },
         {
           quote:
-            "High-quality service, very aesthetic and comfortable environment, and the specialists are educated and friendly.",
+            "High-quality service, very aesthetic and comfortable environment, and the specialists are educated, attentive and genuinely friendly. Couldn't be happier.",
           name: "Julia Tar",
           treatment: "Google review",
         },
@@ -444,19 +444,19 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           quote:
-            "Врачи очень компетентные и профессиональные, а атмосфера просто супер!!!! Была во многих клиниках Еревана и однозначно рекомендую эту ♥️♥️♥️",
+            "Врачи очень компетентные и профессиональные, а атмосфера просто супер. Была во многих клиниках Еревана и однозначно рекомендую эту ♥️",
           name: "Ирина Нверовна",
           treatment: "Отзыв в Google",
         },
         {
           quote:
-            "Без сомнения, это лучшая клиника косметологии в Ереване! Здесь всё на высшем уровне: современное оборудование, стильный интерьер и невероятно приятная атмосфера. Специалисты — настоящие профессионалы: знающие, внимательные и дружелюбные.",
+            "Без сомнения, лучшая клиника косметологии в Ереване. Современное оборудование, стильный интерьер и невероятно приятная атмосфера. Специалисты — настоящие профессионалы, внимательные и знающие.",
           name: "Этери Блеян",
           treatment: "Отзыв в Google",
         },
         {
           quote:
-            "Качественный сервис, очень эстетичная и комфортная атмосфера, специалисты образованные и дружелюбные.",
+            "Качественный сервис, очень эстетичная и комфортная атмосфера. Специалисты образованные, внимательные и по-настоящему дружелюбные — нам всё понравилось.",
           name: "Юлия Тар",
           treatment: "Отзыв в Google",
         },
@@ -657,19 +657,19 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           quote:
-            "Բժիշկները շատ իրավասու և պրոֆեսիոնալ են, իսկ մթնոլորտը հրաշալի!! Եղել եմ Երևանի շատ կլինիկաներում և անկասկած խորհուրդ եմ տալիս հենց այս մեկը ♥️♥️♥️",
+            "Բժիշկները շատ իրավասու և պրոֆեսիոնալ են, իսկ մթնոլորտը հրաշալի: Եղել եմ Երևանի շատ կլինիկաներում և անկասկած խորհուրդ եմ տալիս հենց այս մեկը ♥️",
           name: "Իրինա Նվերովնա",
           treatment: "Google կարծիք",
         },
         {
           quote:
-            "Անկասկած, սա Երևանի լավագույն կոսմետոլոգիական կլինիկան է: Այստեղ ամեն ինչ բարձր մակարդակի վրա է՝ ժամանակակից սարքավորումներ, ոճային ինտերիեր և հաճելի մթնոլորտ: Մասնագետներն իսկական պրոֆեսիոնալներ են՝ տեղեկացված, ուշադիր և սիրալիր:",
+            "Անկասկած, Երևանի լավագույն կոսմետոլոգիական կլինիկան: Ժամանակակից սարքավորումներ, ոճային ինտերիեր և հաճելի մթնոլորտ: Մասնագետներն իսկական պրոֆեսիոնալներ են՝ ուշադիր և տեղեկացված:",
           name: "Էթերի Բլեյան",
           treatment: "Google կարծիք",
         },
         {
           quote:
-            "Որակյալ սպասարկում, շատ էսթետիկ ու հարմարավետ միջավայր, մասնագետները կրթված և ընկերական են:",
+            "Որակյալ սպասարկում, շատ էսթետիկ ու հարմարավետ միջավայր: Մասնագետները կրթված, ուշադիր և իսկապես ընկերական են — պարզապես հիացած եմ:",
           name: "Ջուլիա",
           treatment: "Google կարծիք",
         },
