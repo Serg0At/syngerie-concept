@@ -8,53 +8,47 @@ type Props = { dict: Dictionary };
 
 type Category = "all" | "botox" | "fillers" | "skin";
 
-/* Replace with real client photos */
+/* Design-view placeholders — replace with real consented client photos before launch. */
+const u = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=80`;
+
 const SAMPLES: {
   category: Exclude<Category, "all">;
   before: string;
   after: string;
 }[] = [
+  // Botox — forehead / dynamic-line area
   {
     category: "botox",
-    before:
-      "https://images.unsplash.com/photo-1611077544809-2d6dec1f3066?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1614108557041-3eef8a91d2d2?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    category: "fillers",
-    before:
-      "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1554519515-242161756769?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    category: "skin",
-    before:
-      "https://images.unsplash.com/photo-1595348020949-87cdfbb44174?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1620577617460-2cba5fbf3b8a?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    category: "fillers",
-    before:
-      "https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?auto=format&fit=crop&w=900&q=80",
+    before: u("1521252659862-eec69941b071"),
+    after: u("1487412947147-5cebf100ffc2"),
   },
   {
     category: "botox",
-    before:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1521252659862-eec69941b071?auto=format&fit=crop&w=900&q=80",
+    before: u("1531746020798-e6953c6e8e04"),
+    after: u("1573496359142-b8d87734a5a2"),
+  },
+  // Fillers — lips / cheeks
+  {
+    category: "fillers",
+    before: u("1488426862026-3ee34a7d66df"),
+    after: u("1559599101-f09722fb4948"),
+  },
+  {
+    category: "fillers",
+    before: u("1438761681033-6461ffad8d80"),
+    after: u("1494790108377-be9c29b29330"),
+  },
+  // Skin — texture / glow
+  {
+    category: "skin",
+    before: u("1542596768-5d1d21f1cf98"),
+    after: u("1611042553365-9b101441c135"),
   },
   {
     category: "skin",
-    before:
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80",
-    after:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+    before: u("1503185912284-5271ff81b9a8"),
+    after: u("1607746882042-944635dfe10e"),
   },
 ];
 
@@ -107,6 +101,7 @@ export default function BeforeAfter({ dict }: Props) {
             {filters.map((f) => (
               <button
                 key={f.key}
+                type="button"
                 onClick={() => setActive(f.key)}
                 className={`px-4 py-2 rounded-full text-[12px] tracking-[0.18em] uppercase border transition-colors ${
                   active === f.key
